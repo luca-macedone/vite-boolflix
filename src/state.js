@@ -7,6 +7,7 @@ export const state = reactive({
     movie_base_URL: 'https://api.themoviedb.org/3/search/movie?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&include_adult=false',
     popular_movies_URL: 'https://api.themoviedb.org/3/movie/popular?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&page=1',
     tv_series_base_URL: 'https://api.themoviedb.org/3/search/tv?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT',
+    base_img_URL: 'https://image.tmdb.org/t/p/',
     query: null,
 
     fetchMovies(URL, bool) {
