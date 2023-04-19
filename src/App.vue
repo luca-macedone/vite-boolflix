@@ -1,16 +1,18 @@
 <script>
 import { state } from './state';
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
+
 export default {
   data() {
     return {
       state,
     }
   },
-  methods: {
-    filteredSearch() {
-      this.state.fetchMovies(this.state.setURL())
-    }
-  },
+  components: {
+    AppHeader,
+    AppMain,
+  }
   // mounted() {
   //   this.state.fetchMovies(this.state.setURL()) 
   // },
@@ -18,15 +20,9 @@ export default {
 </script>
 
 <template>
-  <header>
-    <input type="text" v-model="state.query">
-    <button @click="filteredSearch()">Cerca</button>
-  </header>
-  <main>
-    <div class="card" v-for="movie in state.movieList">
-      {{ movie.original_title }}
-    </div>
-  </main>
+
+  <AppHeader/>
+  
 </template>
 
 <style lang="scss" scoped>
