@@ -30,29 +30,36 @@ export default {
     },
     components: {
         CountryFlag,
+    },
+    computed: {
+        mergedList(){
+            if(this.state.movieList){
+                return this.state.movieList.concat(this.state.tvSeriesList) // TODO randomize the merge
+            }
+        }
     }
 }
 </script>
 
 <template>
     <main>
-        <small class="d-inline-block fw-bold mb-3" v-if="state.movieList">Risultati: {{ state.movieList.length }}</small>
+        <small class="d-inline-block fw-bold mb-3" v-if="mergedList">Risultati: {{ mergedList.length }}</small>
         <ul class="">
-            <li class="my-2" v-for="movie in state.movieList">
+            <li class="my-2" v-for="movie in mergedList">
                 <ul class="list-unstyled">
                     <li>
                         <span class="fw-bold">Titolo:</span> 
-                        {{ movie.title }}
+                        {{ movie.title !== undefined? movie.title : movie.name }}
                     </li>
                     <li>
                         <span class="fw-bold">Titolo originale:</span> 
-                        {{ movie.original_title }}
+                        {{ movie.original_title !== undefined? movie.original_title : movie.original_name }}
                     </li>
                     <li v-if="movie.original_language">
                         <span class="fw-bold">Lingua originale:</span>
                         <CountryFlag :country='setMovieLanguage(movie.original_language)' size='normal' :rounded="true" :shadow="true"/>
                     </li>
-                    <li>
+                    <li v-show="movie.vote_average !== 0">
                         <span class="fw-bold">Voto:</span> 
                         {{ movie.vote_average }}
                     </li>
