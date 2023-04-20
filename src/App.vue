@@ -27,6 +27,6 @@ export default {
   
 </template>
 
-<style lang="scss" scoped>
-@use './assets/sass/app.scss';
+<style lang="scss">
+@use './assets/sass/app.scss' as *;
 </style>
