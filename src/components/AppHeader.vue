@@ -24,7 +24,7 @@ export default {
                         <li class="nav-item align-self-center p-2">
                             <div class="input-group">
                                 <input class="form-control rounded-0" type="text" v-model="state.query"
-                                    @keyup.enter="state.filteredSearch()" placeholder="Search..">
+                                    @keyup.enter="state.filteredSearch()" placeholder="Squid Game">
                                 <button class="btn btn-outline-light rounded-0" @click="state.filteredSearch()">
                                     🔍
                                 </button>

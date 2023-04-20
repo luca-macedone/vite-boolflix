@@ -29,11 +29,15 @@ export const state = reactive({
     },
 
     setURL(bool) {
-        if (this.query) {
+        if(this.query !== undefined && this.query !== null) {
             if(bool){
-                return `${this.movie_base_URL}&query=${this.query}`;
+                let newUrl = `${this.movie_base_URL}&query=${this.query}`;
+                //console.log(newUrl);
+                return newUrl;
             }else{
-                return `${this.tv_series_base_URL}&query=${this.query}`;
+                let newUrl = `${this.tv_series_base_URL}&query=${this.query}`;
+                //console.log(newUrl);
+                return newUrl;
             }
         }
         // else{
@@ -42,7 +46,11 @@ export const state = reactive({
     },
 
     filteredSearch() {
-        this.fetchMovies(this.setURL(true), true) // cerco i film
-        this.fetchMovies(this.setURL(false), false) // cerco le serie TV
+        const movieCompleteURL = this.setURL(true);
+        const tvSeriesCompleteURL = this.setURL(false);
+        if(movieCompleteURL !== undefined || tvSeriesCompleteURL !== undefined){
+            this.fetchMovies( movieCompleteURL, true ) // cerco i film
+            this.fetchMovies( tvSeriesCompleteURL, false ) // cerco le serie TV
+        }
     },
 })

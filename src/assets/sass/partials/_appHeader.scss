@@ -11,5 +11,11 @@ header {
             font-weight: bold;
     
         }
+        .navbar-toggler {
+            border-color: $color-primary !important;
+            &:focus {
+                box-shadow: none;
+            }
+        }
     }
 }

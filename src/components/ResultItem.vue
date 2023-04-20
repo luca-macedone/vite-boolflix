@@ -6,10 +6,11 @@ export default {
     data() {
         return {
             state,
+            index: this.itemIndex,
         }
     },
     components: { CountryFlag, },
-    props: ['item', 'list'],
+    props: ['item', 'list',],
     methods: {
         setMovieLanguage(language) {
             switch (language) {
@@ -53,33 +54,45 @@ export default {
 </script>
 
 <template>
-    <div class="col-12 col-md-6 col-lg-4" v-if="list">
-        <div class="card h-100 rounded-0">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-if="list">
+        <div class="card h-100 rounded-0" v-if="item">
             <div class="card-img" v-if="setImgPath(item) !== null">
                 <img class="img-fluid" v-if="list" :src="setImgPath(item)"
-                    :alt="item.title !== undefined ? item.title : item.name">
+                    :alt="item.title ? item.title : item.name">
             </div>
             <div class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
                 <div id="item-name">
-                    <span class="fw-bold">Titolo:</span>
-                    <span v-if="item.title">{{ item.title }}</span>
-                    <span v-else-if="item.name">{{ item.name }}</span>
+                    <!-- <span class="fw-bold">Titolo:</span> -->
+                    <span v-if="item.title">
+                        <p>{{ item.title }}</p>
+                    </span>
+                    <span v-else>
+                        <p>{{ item.name }}</p>
+                    </span>
                 </div>
-                <div id="item-original-name">
-                    <span class="fw-bold">Titolo originale:</span>
-                    <span v-if="item.original_title">{{ item.original_title }}</span>
-                    <span v-else-if="item.original_name">{{ item.original_name }}</span>
-                </div>
-                <div id="item-original-language" v-if="item.original_language">
-                    <span class="fw-bold">Lingua originale:</span>
-                    <CountryFlag :country='setMovieLanguage(item.original_language)' 
-                        size='normal' 
-                        :rounded="true"
-                        :shadow="true" />
+                <div class="d-flex align-items-center gap-3">
+                    <div id="item-original-language" v-if="item.original_language">
+                        <!-- <span class="fw-bold">Lingua originale:</span> -->
+                        <CountryFlag :country='setMovieLanguage(item.original_language)' size='normal' :rounded="true"
+                            :shadow="true" />
+                    </div>
+                    <div id="item-original-name">
+                        <!-- <span class="fw-bold">Titolo originale:</span> -->
+                        <span v-if="item.original_title">
+                            <p>{{ item.original_title }}</p>
+                        </span>
+                        <span v-else>
+                            <p>{{ item.original_name }}</p>
+                        </span>
+                    </div>
                 </div>
                 <div id="item-vote" v-show="item.vote_average !== 0">
-                    <span class="fw-bold">Voto:</span>
-                    {{ setVote(item.vote_average) }}
+                    <span class="fw-bold">Media voti:</span>
+                    <p>{{ setVote(item.vote_average) }}</p>
+                </div>
+                <div id="item-overview" v-if="item.overview !== ''">
+                    <span class="fw-bold">Sinossi:</span>
+                    <p>{{ item.overview }}</p>
                 </div>
             </div>
         </div>

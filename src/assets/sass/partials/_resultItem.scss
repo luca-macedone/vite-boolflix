@@ -1,8 +1,42 @@
 @use './variables' as *;
 
 .card {
+    background-color: $color-dark;
     border-color: $color-primary;
+    // &:hover {
+    //     .card-img-overlay {
+    //         display: block;
+    //     }
+    // }
+
+    .card-img {
+        img {
+            object-fit: cover;
+        }
+    }
     .card-img-overlay {
+        // display: none;
+        max-height: 100% !important;
+        max-width: 100% !important;
         color: $color-light;
+        overflow-y: auto;
+        span.fw-bold {
+            font-size: $text-sm;
+            margin-right: 1rem;
+        }
+        #item-name {
+            p {
+                font-size: $text-md;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+        }
+        #item-original-name {
+            p {
+                font-size: $text-sm;
+                font-style: italic;
+            }
+        }
     }
 }
