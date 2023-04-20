@@ -23,10 +23,18 @@ export default {
 </script>
 
 <template>
-    <main>
-        <small class="d-inline-block fw-bold mb-3" v-if="mergedList">Risultati: {{ mergedList.length }}</small>
-        <ResultList :list="mergedList"/>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <small id="resultCounter" class="col-12 ms-auto mb-3" v-if="mergedList">
+                    Risultati: {{ mergedList.length }}
+                </small>
+                <ResultList :list="mergedList"/>
+            </div>
+        </div>
     </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../assets/sass/partials/appMain' as *;
+</style>

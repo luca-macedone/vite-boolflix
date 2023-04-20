@@ -1,0 +1,10 @@
+@use './variables' as *;
+
+#resultCounter {
+    color: $color-light;
+    display: inline-block;
+    font-weight: normal;
+    font-size: $text-sm;
+    text-decoration: underline $color-primary;
+    text-underline-offset: 3px;
+}

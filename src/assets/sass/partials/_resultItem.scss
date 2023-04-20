@@ -1,0 +1,8 @@
+@use './variables' as *;
+
+.card {
+    border-color: $color-primary;
+    .card-img-overlay {
+        color: $color-light;
+    }
+}
