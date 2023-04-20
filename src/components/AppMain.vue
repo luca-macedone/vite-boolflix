@@ -82,7 +82,7 @@ export default {
                         <span v-else-if="movie.name">{{movie.name}}</span>
                         <!-- {{ movie.title !== undefined? movie.title : movie.name }} -->
                     </li>
-                    <li></li>
+                    <li>
                         <span class="fw-bold">Titolo originale:</span> 
                         <span v-if="movie.original_title">{{movie.original_title}}</span>
                         <span v-else-if="movie.original_name">{{movie.original_name}}</span>
