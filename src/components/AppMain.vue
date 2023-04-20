@@ -36,6 +36,22 @@ export default {
                 }
             } 
             return null;
+        },
+        setVote(vote){
+            if(vote){
+                let normalizedVote = Math.ceil(vote/2);
+                let stars = '';
+                let counter = 0;
+                for(let i=0; i<normalizedVote; i++){
+                    stars += '★';
+                    counter++
+                }
+                for(let i=5; i>counter; i--){
+                    stars += '☆';
+                }
+                //console.log(stars)
+                return stars;
+            }
         }   
     },
     components: {
@@ -56,17 +72,21 @@ export default {
         <small class="d-inline-block fw-bold mb-3" v-if="mergedList">Risultati: {{ mergedList.length }}</small>
         <ul class="">
             <li class="my-2" v-for="movie in mergedList">
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" v-if="mergedList">
                     <li v-if="setImgPath(movie) !== null">
                         <img v-if="mergedList" :src="setImgPath(movie)" :alt="movie.title !== undefined? movie.title : movie.name">
                     </li>
-                    <li v-if="movie.title || movie.name">
+                    <li>
                         <span class="fw-bold">Titolo:</span> 
-                        {{ movie.title !== undefined? movie.title : movie.name }}
+                        <span v-if="movie.title">{{movie.title}}</span>
+                        <span v-else-if="movie.name">{{movie.name}}</span>
+                        <!-- {{ movie.title !== undefined? movie.title : movie.name }} -->
                     </li>
-                    <li v-if="movie.original_title || movie.original_name">
+                    <li></li>
                         <span class="fw-bold">Titolo originale:</span> 
-                        {{ movie.original_title !== undefined? movie.original_title : movie.original_name }}
+                        <span v-if="movie.original_title">{{movie.original_title}}</span>
+                        <span v-else-if="movie.original_name">{{movie.original_name}}</span>
+                        <!-- {{ movie.original_title !== undefined? movie.original_title : movie.original_name }} -->
                     </li>
                     <li v-if="movie.original_language">
                         <span class="fw-bold">Lingua originale:</span>
@@ -74,7 +94,7 @@ export default {
                     </li>
                     <li v-show="movie.vote_average !== 0">
                         <span class="fw-bold">Voto:</span> 
-                        {{ movie.vote_average }}
+                        {{ setVote(movie.vote_average) }}
                     </li>
                 </ul>
             </li>

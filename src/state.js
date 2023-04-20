@@ -20,7 +20,7 @@ export const state = reactive({
                     //console.log(this.movieList);
                 }else{
                     this.tvSeriesList = response.data.results;
-                    console.log(this.tvSeriesList);
+                    //console.log(this.tvSeriesList);
                 }
             })
             .catch(error => {
