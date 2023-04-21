@@ -4,11 +4,16 @@ import { reactive } from "vue";
 export const state = reactive({
     movieList: null,
     tvSeriesList: null,
-    movie_base_URL: 'https://api.themoviedb.org/3/search/movie?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&include_adult=false',
-    popular_movies_URL: 'https://api.themoviedb.org/3/movie/popular?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&page=1',
-    tv_series_base_URL: 'https://api.themoviedb.org/3/search/tv?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT',
-    base_img_URL: 'https://image.tmdb.org/t/p/',
     query: null,
+    genresList: null,
+    category: -1,
+
+    api_base_URL: 'https://api.themoviedb.org/3/',
+    movie_URL: 'search/movie?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&include_adult=false',
+    popular_movies_URL: 'movie/popular?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT&page=1',
+    tv_series_URL: 'search/tv?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT',
+    base_img_URL: 'https://image.tmdb.org/t/p/',
+    genre_URL: 'genre/movie/list?api_key=f909dc835c7bb866b35d37713fed709d&language=it-IT',
 
     fetchResults(URL, isMovie) {
         axios
@@ -31,11 +36,11 @@ export const state = reactive({
     setURL(isMovie) {
         if(this.query !== undefined && this.query !== null) {
             if(isMovie){
-                let newUrl = `${this.movie_base_URL}&query=${this.query}`;
+                let newUrl = `${this.api_base_URL+this.movie_URL}&query=${this.query}`;
                 //console.log(newUrl);
                 return newUrl;
             }else{
-                let newUrl = `${this.tv_series_base_URL}&query=${this.query}`;
+                let newUrl = `${this.api_base_URL+this.tv_series_URL}&query=${this.query}`;
                 //console.log(newUrl);
                 return newUrl;
             }
@@ -50,4 +55,18 @@ export const state = reactive({
             this.fetchResults( tvSeriesCompleteURL, false ) // cerco le serie TV
         }
     },
+
+    fetchGenres(){
+        const genresURL = `${this.api_base_URL+this.genre_URL}`;
+        axios
+            .get(genresURL)
+            .then(response => {
+                //console.log(response)
+                this.genresList = response.data.genres;
+                //console.log(this.genresList)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
 })

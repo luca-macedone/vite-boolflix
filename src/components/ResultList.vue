@@ -13,13 +13,26 @@ export default {
         ResultItem,
     },
     props: ['list'],
+    methods: {
+        filterByCategory(list){
+            if(list){
+                if(state.category !== -1){
+                    return list.filter(item => {
+                        return item.genre_ids == state.category;
+                    })
+                }else{
+                    return list
+                }
+            }
+        }
+    },
 }
 </script>
 
 <template>
     <div class="col-12">
         <div class="row g-3 justify-content-center">
-            <ResultItem :item="movie" :list="list" v-for="movie in list"/>
+            <ResultItem v-if="list" :item="result" :list="filterByCategory(list)" v-for="result in filterByCategory(list)"/>
         </div>
     </div>
 </template>

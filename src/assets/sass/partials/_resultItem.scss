@@ -12,7 +12,11 @@
         .card-img-overlay {
             display: block;
         }
+        img {
+            filter: brightness(40%);
+        }
     }
+
 
     .card-img {
         aspect-ratio: 1  /1.5;
@@ -38,7 +42,8 @@
         #item-name,
         #item-overview,
         #item-vote,
-        #item-original-name {
+        #item-original-name,
+        #item-genres {
             p {
                 margin-bottom: 0;
             }
@@ -48,11 +53,22 @@
         #item-vote
         {
             span {
-                color: $color-primary;
+                color: $color-light;
+                border-bottom: 1px solid $color-primary;
             }
 
             .star {
                 color: $color-light;
+                border-bottom: none;
+            }
+        }
+
+        #item-genres {
+
+            font-size: $text-sm;
+            span {
+                color: $color-light;
+                border-bottom: 1px solid $color-primary;
             }
         }
 
