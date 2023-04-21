@@ -50,6 +50,21 @@ export default {
                 return stars;
             }
         },
+
+        printGenres(arrayOfGenres){
+            let itemGenres = '';
+            if(arrayOfGenres){
+                arrayOfGenres.forEach(id => {
+                    for(let i=0; i<state.genresList.length; i++){
+                        if(id === state.genresList[i].id){
+                            itemGenres += state.genresList[i].name + ', ';
+                        }
+                    }                
+                });
+            }
+            // console.log(itemGenres)
+            return itemGenres;
+        },
     },
 }
 </script>
@@ -86,6 +101,12 @@ export default {
                         </span>
                     </div>
                 </div>
+                <div id="item-genres" class=" d-flex align-items-baseline">
+                    <span class="fw-bold">Genere:</span>
+                    <p>
+                        {{ printGenres(item.genre_ids) }}
+                    </p>
+                </div>
                 <div id="item-vote" v-show="item.vote_average !== 0">
                     <span class="fw-bold">Media voti:</span>
                     <span class="star" v-for="star in setVote(item.vote_average)">
@@ -95,6 +116,9 @@ export default {
                 <div id="item-overview" v-if="item.overview !== ''">
                     <span class="fw-bold">Sinossi:</span>
                     <p>{{ item.overview }}</p>
+                </div>
+                <div id="items-cast">
+                    
                 </div>
             </div>
         </div>
