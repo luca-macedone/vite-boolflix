@@ -1,5 +1,99 @@
 @use './variables' as *;
 
+#more-info-panel {
+    background-color: $color-dark;
+    color: $color-light;
+    top: 0;
+    left: 0;
+    z-index: 150;
+
+    span.fw-bold {
+        font-size: $text-sm;
+        margin-right: 1rem;
+    }
+
+    #item-name,
+    #item-overview,
+    #item-vote,
+    #item-original-name,
+    #item-genres {
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    #item-overview,
+    #item-vote {
+        span {
+            color: $color-light;
+            border-bottom: 1px solid $color-primary;
+        }
+
+        .star {
+            color: $color-light;
+            border-bottom: none;
+        }
+    }
+
+    #item-genres {
+
+        font-size: $text-sm;
+
+        span {
+            color: $color-light;
+            border-bottom: 1px solid $color-primary;
+        }
+    }
+
+    #item-name {
+        p {
+            font-size: $text-md;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        border-bottom: 1px solid $color-primary;
+    }
+
+    #item-original-name {
+        p {
+            font-size: $text-sm;
+            font-style: italic;
+        }
+    }
+
+    #item-overview {
+        p {
+            text-align: justify;
+            font-size: $text-sm;
+        }
+    }
+
+    #show-more-action button,
+    #exit-button {
+        background-color: $color-dark-light;
+        color: $color-light;
+
+        &:hover {
+            border-color: $color-primary;
+        }
+    }
+
+
+    #items-cast {
+        span {
+            border-bottom: 1px solid $color-primary;
+        }
+        p {
+            span {
+                font-size: $text-sm;
+                border: none;
+            }
+        }
+    }
+}
+
 .card {
     aspect-ratio: 1 / 1.5;
     cursor: pointer;
@@ -7,11 +101,14 @@
     //border-color: $color-primary;
     transition: .25s all ease-in-out;
     border: none;
+
     &:hover {
         box-shadow: 0 0 4rem $color-primary;
+
         .card-img-overlay {
             display: block;
         }
+
         img {
             filter: brightness(40%);
         }
@@ -19,8 +116,9 @@
 
 
     .card-img {
-        aspect-ratio: 1  /1.5;
+        aspect-ratio: 1 /1.5;
         overflow: hidden;
+
         img {
             height: 100%;
             width: 100%;
@@ -51,8 +149,7 @@
         }
 
         #item-overview,
-        #item-vote
-        {
+        #item-vote {
             span {
                 color: $color-light;
                 border-bottom: 1px solid $color-primary;
@@ -67,6 +164,7 @@
         #item-genres {
 
             font-size: $text-sm;
+
             span {
                 color: $color-light;
                 border-bottom: 1px solid $color-primary;
@@ -98,9 +196,16 @@
                 font-size: $text-sm;
             }
         }
-    }
-}
 
-#no-result-message {
-    color: $color-light;
+        #show-more-action {
+            button {
+                background-color: $color-dark-light;
+                color: $color-light;
+
+                &:hover {
+                    border-color: $color-primary;
+                }
+            }
+        }
+    }
 }

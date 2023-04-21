@@ -80,7 +80,7 @@ export const state = reactive({
             .then(response => {
                 //console.log(response)
                 this.resultCredits = response.data.cast;
-                console.log(this.resultCredits)
+                //console.log(this.resultCredits)
             })
             .catch(error => {
                 console.error(error)
