@@ -10,12 +10,12 @@ export const state = reactive({
     base_img_URL: 'https://image.tmdb.org/t/p/',
     query: null,
 
-    fetchMovies(URL, bool) {
+    fetchResults(URL, isMovie) {
         axios
             .get(URL)
             .then(response => {
                 //console.log(response)
-                if(bool){
+                if(isMovie){
                     this.movieList = response.data.results;
                     //console.log(this.movieList);
                 }else{
@@ -28,9 +28,9 @@ export const state = reactive({
             })
     },
 
-    setURL(bool) {
+    setURL(isMovie) {
         if(this.query !== undefined && this.query !== null) {
-            if(bool){
+            if(isMovie){
                 let newUrl = `${this.movie_base_URL}&query=${this.query}`;
                 //console.log(newUrl);
                 return newUrl;
@@ -40,17 +40,14 @@ export const state = reactive({
                 return newUrl;
             }
         }
-        // else{
-        //     return this.popular_movies_URL; // se non sto cercando nulla di base stampo i film più poplari
-        // }
-    },
+    },                      
 
     filteredSearch() {
         const movieCompleteURL = this.setURL(true);
         const tvSeriesCompleteURL = this.setURL(false);
         if(movieCompleteURL !== undefined || tvSeriesCompleteURL !== undefined){
-            this.fetchMovies( movieCompleteURL, true ) // cerco i film
-            this.fetchMovies( tvSeriesCompleteURL, false ) // cerco le serie TV
+            this.fetchResults( movieCompleteURL, true ) // cerco i film
+            this.fetchResults( tvSeriesCompleteURL, false ) // cerco le serie TV
         }
     },
 })

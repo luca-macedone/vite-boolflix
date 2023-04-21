@@ -8,3 +8,16 @@
     text-decoration: underline $color-primary;
     text-underline-offset: 3px;
 }
+
+#film-section,
+#series-section
+{
+    h2 {
+        display: inline-block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: $color-light;
+        text-decoration: underline $color-primary;
+        text-underline-offset: 3px;
+    }
+}

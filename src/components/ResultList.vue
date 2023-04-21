@@ -18,7 +18,7 @@ export default {
 
 <template>
     <div class="col-12">
-        <div class="row g-3">
+        <div class="row g-3 justify-content-center">
             <ResultItem :item="movie" :list="list" v-for="movie in list"/>
         </div>
     </div>

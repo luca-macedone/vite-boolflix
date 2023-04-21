@@ -21,9 +21,10 @@ export default {
 </script>
 
 <template>
-
-  <AppHeader/>
-  <AppMain/>
+  <div class="position-relative">
+    <AppHeader/>
+    <AppMain/>
+  </div>
   
 </template>
 

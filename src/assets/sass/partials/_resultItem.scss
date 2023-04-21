@@ -1,41 +1,84 @@
 @use './variables' as *;
 
 .card {
+    aspect-ratio: 1 / 1.5;
+    cursor: pointer;
     background-color: $color-dark;
-    border-color: $color-primary;
-    // &:hover {
-    //     .card-img-overlay {
-    //         display: block;
-    //     }
-    // }
+    //border-color: $color-primary;
+    transition: .25s all ease-in-out;
+    border: none;
+    &:hover {
+        box-shadow: 0 0 4rem $color-primary;
+        .card-img-overlay {
+            display: block;
+        }
+    }
 
     .card-img {
+        aspect-ratio: 1  /1.5;
         img {
+            height: 100%;
+            width: 100%;
             object-fit: cover;
         }
     }
+
     .card-img-overlay {
-        // display: none;
+        display: none;
         max-height: 100% !important;
         max-width: 100% !important;
         color: $color-light;
         overflow-y: auto;
+
         span.fw-bold {
             font-size: $text-sm;
             margin-right: 1rem;
         }
-        #item-name {
+
+        #item-name,
+        #item-overview,
+        #item-vote,
+        #item-original-name {
             p {
-                font-size: $text-md;
-                font-weight: 600;
-                text-transform: uppercase;
                 margin-bottom: 0;
             }
         }
+
+        #item-overview,
+        #item-vote
+        {
+            span {
+                color: $color-primary;
+            }
+
+            .star {
+                color: $color-light;
+            }
+        }
+
+        #item-name {
+            p {
+                min-height: 4rem;
+                font-size: $text-md;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-align: center;
+            }
+
+            border-bottom: 1px solid $color-primary;
+        }
+
         #item-original-name {
             p {
                 font-size: $text-sm;
                 font-style: italic;
+            }
+        }
+
+        #item-overview {
+            p {
+                text-align: justify;
+                font-size: $text-sm;
             }
         }
     }

@@ -2,19 +2,73 @@
 
 header {
     background-color: $color-dark;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
     .container {
-        
+
         .navbar-brand {
-    
+            text-transform: uppercase;
             color: $color-primary;
             font-size: 2rem;
             font-weight: bold;
-    
+
         }
+
         .navbar-toggler {
             border-color: $color-primary !important;
+            color: $color-primary;
+            transition: .25s all ease-in-out;
+
             &:focus {
                 box-shadow: none;
+            }
+
+            &:hover {
+                color: $color-light;
+                border-color: $color-light !important;
+            }
+
+
+        }
+
+        .nav-item {
+            a {
+                color: $color-light;
+                text-decoration: none;
+                transition: .25s all ease-in-out;
+                &:hover {
+                    border-bottom: 1px solid $color-primary;
+                }
+            }
+
+            #search-bar {
+                &:hover{
+                    input {
+                        border-color: $color-primary;
+                    }
+                    .btn {
+                        border-color: $color-primary;
+                    }
+                }
+
+                input {
+                    border-color: $color-light;
+                    background-color: $color-light;
+                    color: $color-dark;
+                    border-right: none;
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+
+                .btn {
+                    border-color: $color-light;
+                    background-color: $color-light;
+                    border-left: none;
+                }
             }
         }
     }

@@ -36,16 +36,24 @@ export default {
         setVote(vote) {
             if (vote) {
                 let normalizedVote = Math.ceil(vote / 2);
-                let stars = '';
+                let stars = [];
                 let counter = 0;
-                for (let i = 0; i < normalizedVote; i++) {
-                    stars += '★';
+                // for (let i = 0; i < normalizedVote; i++) {
+                //     stars += '★';
+                //     counter++
+                // }
+                // for (let i = 5; i > counter; i--) {
+                //     stars += '☆';
+                // }
+                for(let i=0; i<5; i++){
+                    if(counter < normalizedVote){
+                        stars.push('fa-solid fa-star');
+                    }else {
+                        stars.push('fa-regular fa-star');
+                    }
                     counter++
                 }
-                for (let i = 5; i > counter; i--) {
-                    stars += '☆';
-                }
-                //console.log(stars)
+                //console.log(normalizedVote)
                 return stars;
             }
         },
@@ -57,11 +65,10 @@ export default {
     <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-if="list">
         <div class="card h-100 rounded-0" v-if="item">
             <div class="card-img" v-if="setImgPath(item) !== null">
-                <img class="img-fluid" v-if="list" :src="setImgPath(item)"
-                    :alt="item.title ? item.title : item.name">
+                <img class="" v-if="list" :src="setImgPath(item)" :alt="item.title ? item.title : item.name">
             </div>
-            <div class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
-                <div id="item-name">
+            <div :class="!setImgPath(item)? 'd-block': ''" class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
+                <div class="pb-1" id="item-name">
                     <!-- <span class="fw-bold">Titolo:</span> -->
                     <span v-if="item.title">
                         <p>{{ item.title }}</p>
@@ -70,7 +77,7 @@ export default {
                         <p>{{ item.name }}</p>
                     </span>
                 </div>
-                <div class="d-flex align-items-center gap-3">
+                <div class="mt-1 d-flex align-items-top gap-3">
                     <div id="item-original-language" v-if="item.original_language">
                         <!-- <span class="fw-bold">Lingua originale:</span> -->
                         <CountryFlag :country='setMovieLanguage(item.original_language)' size='normal' :rounded="true"
@@ -88,7 +95,10 @@ export default {
                 </div>
                 <div id="item-vote" v-show="item.vote_average !== 0">
                     <span class="fw-bold">Media voti:</span>
-                    <p>{{ setVote(item.vote_average) }}</p>
+                    <!-- <p>{{ setVote(item.vote_average).forEach(vote => {
+
+                    }) }}</p> -->
+                    <span class="star" v-for="star in setVote(item.vote_average)"> <font-awesome-icon :icon="star" /> </span>
                 </div>
                 <div id="item-overview" v-if="item.overview !== ''">
                     <span class="fw-bold">Sinossi:</span>

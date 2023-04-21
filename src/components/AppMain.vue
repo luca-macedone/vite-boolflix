@@ -13,8 +13,8 @@ export default {
         ResultList,
     },
     computed: {
-        mergedList(){
-            if(this.state.movieList){
+        mergedList() {
+            if (this.state.movieList) {
                 return this.state.movieList.concat(this.state.tvSeriesList) // TODO randomize the merge
             }
         }
@@ -26,10 +26,25 @@ export default {
     <main class="py-4">
         <div class="container">
             <div class="row">
-                <small id="resultCounter" class="col-12 ms-auto mb-3" v-if="mergedList">
-                    Risultati: {{ mergedList.length }}
-                </small>
-                <ResultList :list="mergedList"/>
+                <section id="film-section">
+                    <div class="col-12 d-flex justify-content-start align-items-baseline gap-4">
+                        <h2>Film</h2>
+                        <small id="resultCounter" class="w-75" v-if="mergedList">
+                            Risultati: {{ state.movieList.length }}
+                        </small>
+                    </div>
+                    <ResultList :list="state.movieList" />
+                </section>
+                <section class="mt-5" id="series-section">
+                    <div class="col-12 d-flex justify-content-start align-items-baseline gap-4">
+                        <h2>Serie TV</h2>
+                        <small id="resultCounter" class="w-75" v-if="mergedList">
+                            Risultati: {{ state.movieList.length }}
+                        </small>
+                    </div>
+                    <ResultList :list="state.movieList" />
+                    <ResultList :list="state.tvSeriesList" />
+                </section>
             </div>
         </div>
     </main>
