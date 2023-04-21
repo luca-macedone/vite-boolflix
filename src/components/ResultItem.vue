@@ -65,6 +65,26 @@ export default {
             // console.log(itemGenres)
             return itemGenres;
         },
+
+        printCast(id){
+            this.state.fetchCredits(id);
+            console.log('sono nella print')
+            return this.searchActors(this.state.resultCredits);
+        },
+
+        searchActors(arrayOfCast){
+            let actors = '';
+            if(arrayOfCast){
+                console.log(arrayOfCast);
+                actors = arrayOfCast.filter(member => {
+                    if(member.known_for_department === 'Acting'){
+                        return member.name;
+                    }
+                })
+            }
+            console.log(actors)
+            this.state.singleResultCast = actors;
+        },
     },
 }
 </script>
@@ -72,7 +92,7 @@ export default {
 <template>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-if="list">
         <div class="card h-100 rounded-0" v-if="item">
-            <div class="card-img" v-if="setImgPath(item) !== null">
+            <div class="card-img rounded-0" v-if="setImgPath(item) !== null">
                 <img class="" v-if="list" :src="setImgPath(item)" :alt="item.title ? item.title : item.name">
             </div>
             <div :class="!setImgPath(item) ? 'd-block' : ''" class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
@@ -117,8 +137,9 @@ export default {
                     <span class="fw-bold">Sinossi:</span>
                     <p>{{ item.overview }}</p>
                 </div>
-                <div id="items-cast">
-                    
+                <div id="items-cast" @mouseenter="printCast(item.id)">
+                    <span class="fw-bold">Cast:</span>
+                    <p>{{ state.singleResultCast }}</p>
                 </div>
             </div>
         </div>

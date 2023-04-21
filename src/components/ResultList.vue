@@ -30,8 +30,8 @@ export default {
 </script>
 
 <template>
-    <div class="col-12">
-        <div class="row g-3 justify-content-center">
+    <div class="col-12 my-3">
+        <div class="row g-3 justify-content-start">
             <ResultItem v-if="list" :item="result" :list="filterByCategory(list)" v-for="result in filterByCategory(list)"/>
         </div>
     </div>

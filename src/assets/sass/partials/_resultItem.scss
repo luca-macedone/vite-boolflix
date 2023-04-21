@@ -20,6 +20,7 @@
 
     .card-img {
         aspect-ratio: 1  /1.5;
+        overflow: hidden;
         img {
             height: 100%;
             width: 100%;
@@ -98,4 +99,8 @@
             }
         }
     }
+}
+
+#no-result-message {
+    color: $color-light;
 }

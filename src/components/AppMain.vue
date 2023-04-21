@@ -12,7 +12,7 @@ export default {
     components: {
         ResultList,
     },
-    mounted(){
+    mounted() {
         state.fetchGenres();
     },
     // computed: {
@@ -34,13 +34,14 @@ export default {
                         <div class="row">
                             <div class="col-12 col-md-6 d-flex justify-content-start align-items-baseline gap-4">
                                 <h2>Film</h2>
-                                <small id="resultCounter" class="" v-if="state.movieList">
+                                <small id="resultCounter" class="" v-if="state.movieList && state.category === -1">
                                     Risultati: {{ state.movieList.length }}
                                 </small>
                             </div>
-                            <div class="col-12 col-md-6 d-flex justify-content-start align-items-center gap-2" id="category-filter">
-                                <label for="category-select">Categoria:</label>
-                                <select class="form-select" v-model="state.category" id="category-select">
+                            <div class="col-12 col-md-6 d-flex justify-content-start align-items-center gap-2"
+                                id="category-filter">
+                                <label for="category-select" class="d-none d-md-inline-block">Categoria:</label>
+                                <select class="form-select rounded-0" v-model="state.category" id="category-select">
                                     <option :value="-1" selected>Scegli..</option>
                                     <option :value="genre.id" v-for="genre in state.genresList">{{ genre.name }}</option>
                                 </select>
@@ -50,13 +51,17 @@ export default {
                     <ResultList :list="state.movieList" />
                 </section>
                 <section class="mt-5" id="series-section" v-show="state.tvSeriesList">
-                    <div class="col-12 d-flex justify-content-start align-items-baseline gap-4">
-                        <h2>Serie TV</h2>
-                        <small id="resultCounter" class="w-75" v-if="state.tvSeriesList">
-                            Risultati: {{ state.tvSeriesList.length }}
-                        </small>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 col-md-6 d-flex justify-content-start align-items-baseline gap-4">
+                                <h2>Serie Tv</h2>
+                                <small id="resultCounter" class="" v-if="state.tvSeriesList && state.category === -1">
+                                    Risultati: {{ state.tvSeriesList.length }}
+                                </small>
+                            </div>
+                        </div>
                     </div>
-                    <ResultList :list="state.tvSeriesList"/>
+                    <ResultList :list="state.tvSeriesList" />
                 </section>
             </div>
         </div>

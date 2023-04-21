@@ -20,7 +20,7 @@ export default {
                     <font-awesome-icon icon="fa-solid fa-bars"/>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
-                    <ul class="navbar-nav ms-auto d-flex gap-3 align-items-center">
+                    <ul class="navbar-nav ms-auto d-flex gap-2 gap-xl-3 align-items-center">
                         <li class="nav-item active">
                             <a href="#">Home</a>
                         </li>
