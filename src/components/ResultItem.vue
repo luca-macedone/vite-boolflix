@@ -38,17 +38,10 @@ export default {
                 let normalizedVote = Math.ceil(vote / 2);
                 let stars = [];
                 let counter = 0;
-                // for (let i = 0; i < normalizedVote; i++) {
-                //     stars += '★';
-                //     counter++
-                // }
-                // for (let i = 5; i > counter; i--) {
-                //     stars += '☆';
-                // }
-                for(let i=0; i<5; i++){
-                    if(counter < normalizedVote){
+                for (let i = 0; i < 5; i++) {
+                    if (counter < normalizedVote) {
                         stars.push('fa-solid fa-star');
-                    }else {
+                    } else {
                         stars.push('fa-regular fa-star');
                     }
                     counter++
@@ -67,7 +60,7 @@ export default {
             <div class="card-img" v-if="setImgPath(item) !== null">
                 <img class="" v-if="list" :src="setImgPath(item)" :alt="item.title ? item.title : item.name">
             </div>
-            <div :class="!setImgPath(item)? 'd-block': ''" class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
+            <div :class="!setImgPath(item) ? 'd-block' : ''" class="card-img-overlay rounded-0 bg-dark bg-opacity-75">
                 <div class="pb-1" id="item-name">
                     <!-- <span class="fw-bold">Titolo:</span> -->
                     <span v-if="item.title">
@@ -95,10 +88,9 @@ export default {
                 </div>
                 <div id="item-vote" v-show="item.vote_average !== 0">
                     <span class="fw-bold">Media voti:</span>
-                    <!-- <p>{{ setVote(item.vote_average).forEach(vote => {
-
-                    }) }}</p> -->
-                    <span class="star" v-for="star in setVote(item.vote_average)"> <font-awesome-icon :icon="star" /> </span>
+                    <span class="star" v-for="star in setVote(item.vote_average)">
+                        <font-awesome-icon :icon="star" />
+                    </span>
                 </div>
                 <div id="item-overview" v-if="item.overview !== ''">
                     <span class="fw-bold">Sinossi:</span>
